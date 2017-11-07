@@ -1,0 +1,41 @@
+﻿*
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Styles for the body */
+body
+{
+    color: white;
+    font-size: 100%;
+    margin: 0 auto 0 auto;
+    width: auto;
+    border: 3px solid white;
+}
+
+/* Styles for the header*/
+header
+{
+    background-color: #008C95;
+    border-bottom: solid 3px;
+    border-bottom-color: white;
+    text-align: center;
+}
+
+/* Styles for the footer */
+footer
+{
+    background-color: #008C95;
+    border-top: white 3px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
