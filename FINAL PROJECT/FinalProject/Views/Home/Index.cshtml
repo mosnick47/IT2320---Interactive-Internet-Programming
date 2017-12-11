@@ -1,0 +1,33 @@
+﻿@model FinalProject.Models.HomeViewModel
+
+<html>
+
+<head>
+    <link href="~/Styles/Home.css" rel="stylesheet" />
+    <title>Final Project - Login</title>
+</head>
+
+
+
+<body>
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/Home.js"></script>
+
+    <header>
+        <img src="~/images/logo.png" alt="Tri-C Logo" height="120" />
+    </header>    
+    <h1>Create Login</h1>
+    <form name="createLoginForm" align="center">        
+        Username: <input type="text" name="Uname" placeholder="must be at least 6 characters long" autocomplete="on"/><br />        <!-- I set the autocomplete property to on-->
+        Password: <input type="text" name="Pword" placeholder="must be at least 6 characters long" autocomplete="on"/><br />        <!-- because if the user enters incorrect info-->
+        Email: <input type="text" name="Email" placeholder="someone@mail.com" autocomplete="on"/><br />                             <!-- and the page refreshes, the input boxes are-->
+        Confirm Email: <input type="text" name="confirmEmail" placeholder="re-enter the email above" autocomplete="on"/><br />      <!-- empty after the page refreshes.-->
+        <input class="submitButton" type="submit" value="Submit" onclick="validateCreateLoginForm()" />                             <!-- Ideally, we would like the entered values-->
+    </form>                                                                                                                         <!-- to persist on postback, but this will do for now.-->
+    <footer>
+        <p>&copy; 2017 Nick Mosinski</p>
+    </footer>
+</body>
+
+</html>
