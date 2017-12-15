@@ -4,7 +4,7 @@
 
 <head>
     <link href="~/Styles/Home.css" rel="stylesheet" />
-    <title>Final Project - Login</title>
+    <title>IT 2320 - 12.15.2017 Final Project</title>
 </head>
 
 
@@ -13,18 +13,31 @@
     <script src="~/Scripts/jquery-2.1.1.min.js"></script>
     <script src="~/Scripts/jquery-ui.min.js"></script>
     <script src="~/Scripts/Home.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <header>
         <img src="~/images/logo.png" alt="Tri-C Logo" height="120" />
-    </header>    
-    <h1>Create Login</h1>
-    <form name="createLoginForm" align="center">        
-        Username: <input type="text" name="Uname" placeholder="must be at least 6 characters long" autocomplete="on"/><br />        <!-- I set the autocomplete property to on-->
-        Password: <input type="text" name="Pword" placeholder="must be at least 6 characters long" autocomplete="on"/><br />        <!-- because if the user enters incorrect info-->
-        Email: <input type="text" name="Email" placeholder="someone@mail.com" autocomplete="on"/><br />                             <!-- and the page refreshes, the input boxes are-->
-        Confirm Email: <input type="text" name="confirmEmail" placeholder="re-enter the email above" autocomplete="on"/><br />      <!-- empty after the page refreshes.-->
-        <input class="submitButton" type="submit" value="Submit" onclick="validateCreateLoginForm()" />                             <!-- Ideally, we would like the entered values-->
-    </form>                                                                                                                         <!-- to persist on postback, but this will do for now.-->
+    </header>
+    <h1 id="formHeader" name="formHeader">Create Login</h1>
+    <form id="createLoginForm" name="createLoginForm" method="post" align="center">
+        <div id="userNameDiv">
+            <label id="usernameLabel">Username: </label>
+            <input id="Un" type="text" name="Uname" placeholder="must be at least 6 characters long" autocomplete="on" /><br />
+        </div>
+        <div id="passWordDiv">
+            <lable id="passwordLabel">Password: </lable>
+            <input id="Pw" type="text" name="Pword" placeholder="must be at least 6 characters long" autocomplete="on" /><br />
+        </div>
+        <div id="eMailDiv">
+            <label id="emailLabel">Email: </label>
+            <input class="email" id="Em" type="text" name="Email" placeholder="someone@mail.com" autocomplete="on" /><br />
+        </div>
+        <div id="confirmEmailDiv">
+            <label>Confirm Email: </label>
+            <input class="email" id="CEm" type="text" name="confirmEmail" placeholder="re-enter the email above" autocomplete="on" /><br /><br />
+        </div>
+        <input class="submitButton" id="submitButton" type="button" value="Submit" onclick="ValidateCreateLoginForm()" />
+    </form>
     <footer>
         <p>&copy; 2017 Nick Mosinski</p>
     </footer>

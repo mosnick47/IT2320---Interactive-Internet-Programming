@@ -1,57 +1,127 @@
-﻿//=================================================================================================
-function displayAccountInfo() {
-    var myForm = document.getElementsByTagName("form");
-
-    myForm[0].innerHTML = document.forms["createLoginForm"]["Uname"].value;
-    myForm[1].innerHTML = document.forms["createLoginForm"]["Pword"].value;
-    myForm[2].innerHTML = document.forms["createLoginForm"]["Email"].value;
+﻿
+function User(userName, passWord, eMail) {
+    this.userName = document.getElementById("Un").value;
+    this.passWord = document.getElementById("Pw").value;
+    this.eMail = document.getElementById("CEm").value;
 }
 
-//=================================================================================================
-//                        VALIDATION OF CREATE LOGIN SCREEN INPUT BOXES
-//=================================================================================================
-function validateCreateLoginForm() {
-    // validation of username
-    var userName = document.forms["createLoginForm"]["Uname"].value;
+function ValidateCreateLoginForm() {
+
+    //validation of username
+    var userName = document.getElementById("Un").value;
+    var passWord = document.getElementById("Pw").value;
+    var eMail = document.getElementById("Em").value;
+    var confirmEmail = document.getElementById("CEm").value;
+
     if (userName.length < 6) {
         alert("Username must be at least 6 characters long.");
-        return false;
     }
-
-    // validation of password
-    var passWord = document.forms["createLoginForm"]["Pword"].value;
-    if (passWord.length < 6) {
+    else if (passWord.length < 6) {
         alert("Password must be at least 6 characters long.");
-        return false;
     }
-
-    // validation of email
-    var eMail = document.forms["createLoginForm"]["Email"].value;
-    if (!eMail.includes("@")) {
+    else if (!eMail.includes("@")) {
         alert("Email is not in correct format. Must be in the format of someone@mail.com");
-        return false;
+    }
+    else if (confirmEmail !== eMail) {
+        alert("Please verify that the confirm email input matches the email input.");
+    }
+    else {
+        var user = new User();
+        var button = document.getElementById("submitButton");
+        DisplayLogin();
+
+        // modify submit button to call new method
+        button.onclick = function () { ValidateLogin(user) };
     }
 
-    // validate that confirm email box matches the text entered in the email box
-    var confirmEmail = document.forms["createLoginForm"]["confirmEmail"].value;
-    if (confirmEmail != eMail) {
-        alert("Please verify that the cofirm email input matches the email input.");
-        return false;
-    }
-
-    // when the user clicks the submit button, display the login page.
-    displayLogin();
 }
-//====================================================================================================
-//                                          LOGIN PAGE
-//====================================================================================================
-function displayLogin() {
-    var myHeader = document.getElementsByTagName("h1");
-    myHeader[0].innerHTML = "Login";
 
-    var myForm = document.getElementsByTagName("createLoginForm");
-    myForm[0].innerHTML = "Username: <input type=\"text\" name=\"Uname\" placeholder=\"must be at least 6 characters long\" autocomplete=\"on\"/><br />";
-    myForm[1].innerHTML = "Password: <input type=\"text\" name=\"Pword\" placeholder=\"must be at least 6 characters long\" autocomplete=\"on\" /> <br />";
-    myForm[2].innerHTML = "";
-    myForm[3].innerHTML = "";
+function DisplayLogin() {
+
+    alert("You have successfully created an account.");
+
+    // Accessing the parent node
+    var myForm = document.getElementById("createLoginForm");
+
+    // Change the header to Login
+    var myHeader = document.getElementById("formHeader").innerHTML = "Login";
+
+    // Get the values of Create Login Form 
+    var myUname = document.getElementById("Un").value;
+    var myPword = document.getElementById("Pw").value;
+    var myEmail = document.getElementById("Em").value;
+    var myConfirmEmail = document.getElementById("CEm").value;
+
+    // Empty the input boxes
+    document.getElementById("Un").value = "";
+    document.getElementById("Pw").value = "";
+
+    // Remove the placeholders
+    document.getElementById("Un").setAttribute("placeholder", " ");
+    document.getElementById("Pw").setAttribute("placeholder", " ");
+
+    // Modify/Hide Email and Confirm Email boxes    
+    document.getElementById("eMailDiv").setAttribute("hidden", "hidden");
+    document.getElementById("confirmEmailDiv").setAttribute("hidden", "hidden");
+}
+
+function ValidateLogin(user) {
+
+    var loginUsername = document.getElementById("Un");
+    var loginPassword = document.getElementById("Pw");
+    if (loginUsername.value != user.userName) {
+
+        alert("Username or Password is incorrect.");
+    }
+    else if (loginPassword.value != user.passWord) {
+        alert("Username or Password is incorrect.");
+    }
+    else {
+        DisplayAccountInformation(user);
+    }
+}
+
+function DisplayAccountInformation(user) {
+    alert("Welcome to your Tri-C Account Information page!")
+
+    // change the header to Account Information
+    document.getElementById("formHeader").innerHTML = "Account Information";
+
+    // modify username and password boxes/label
+    document.getElementById("Un").setAttribute("hidden", "hidden");
+    document.getElementById("usernameLabel").innerHTML = "Username: " + user.userName + " ";
+    document.getElementById("Pw").setAttribute("hidden", "hidden");
+    document.getElementById("passwordLabel").innerHTML = "Password: " + user.passWord + " ";
+
+
+    // make email visible again
+    document.getElementById("eMailDiv").removeAttribute("hidden");
+    document.getElementById("Em").setAttribute("hidden", "hidden");
+    document.getElementById("emailLabel").innerHTML = "Email: " + user.eMail + "\t";
+
+    // change submit button
+    var button = document.getElementById("submitButton");
+    button.setAttribute("value", "Update");
+    button.onclick = function () { EditAccount(user) };
+}
+
+function EditAccount(user) {
+    // change the header to Update Account Information
+    document.getElementById("formHeader").innerHTML = "Update Account Information";
+
+    // hide the Username input box
+    document.getElementById("Un").setAttribute("hidden", "hidden");
+
+    // make the password input box visible again
+    document.getElementById("Pw").removeAttribute("hidden");
+    document.getElementById("passwordLabel").innerHTML = "Password: ";
+    var newPassword = document.getElementById("Pw").value;
+
+    // make the email input box visible again
+    document.getElementById("Em").removeAttribute("hidden");
+    document.getElementById("emailLabel").innerHTML = "Email: ";
+    var newEmail = document.getElementById("Em");
+
+    document.getElementById("submitButton").setAttribute("value", "Save");
+
 }

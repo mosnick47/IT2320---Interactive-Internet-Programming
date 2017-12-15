@@ -16,7 +16,9 @@ Global Front-End Requirements
   •All responsive design should use media queries.
 
 Login Screen Only
+  •Login section allows a user who already has an account to log in.
   •Successful login will take you to the Account Information screen.
+  •Unsuccessful login will display error messages on the screen.
   •Create Account section will allow a user to create a new account.
   •They must provide a unique username that is at least 6 characters.
   •They must provide a password that is at least 6 characters.
